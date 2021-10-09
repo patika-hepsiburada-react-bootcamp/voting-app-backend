@@ -1,0 +1,25 @@
+{
+  "name": "voting-app-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "start:dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patika-hepsiburada-react-bootcamp/voting-app-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/patika-hepsiburada-react-bootcamp/voting-app-backend/issues"
+  },
+  "homepage": "https://github.com/patika-hepsiburada-react-bootcamp/voting-app-backend#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^4.2.0"
+  }
+}
