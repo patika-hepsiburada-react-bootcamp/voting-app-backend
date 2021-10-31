@@ -9,7 +9,7 @@ const client = require('./redis');
 const Vote = require('./lib/Votes');
 
 app.get('/', async (req, res) => {
-  res.json({ message: 'App is running.' });
+  res.json({ message: 'App is running.  2' });
 });
 
 const votes = {
