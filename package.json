@@ -20,6 +20,7 @@
   "homepage": "https://github.com/patika-hepsiburada-react-bootcamp/voting-app-backend#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "ioredis": "^4.27.10",
     "socket.io": "^4.2.0"
   }
 }

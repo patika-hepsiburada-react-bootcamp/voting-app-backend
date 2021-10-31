@@ -4,9 +4,14 @@ const http = require('http');
 const server = http.createServer(app);
 const { Server } = require('socket.io');
 const io = new Server(server);
+const client = require('./redis');
 
-app.get('/', (req, res) => {
-  res.end('realtime colors app');
+const Vote = require('./lib/Votes');
+
+app.get('/', async (req, res) => {
+  await client.set('javascript', 1);
+  const name = await client.get('javascript');
+  res.end(`name ${name}`);
 });
 
 const votes = {
@@ -16,12 +21,18 @@ const votes = {
   c: 0,
 };
 
-io.on('connection', (socket) => {
+io.on('connection', async (socket) => {
   console.log('a user connected');
+
+  votes.javascript = Number(await client.get('javascript'));
+  votes.go = Number(await client.get('go'));
+  votes.php = Number(await client.get('php'));
+  votes.c = Number(await client.get('c'));
 
   socket.emit('new-vote', votes);
 
   socket.on('new-vote', (vote) => {
+    Vote.incr(vote);
     console.log('New Vote:', vote);
     votes[vote] += 1;
     io.emit('new-vote', votes);
@@ -30,6 +41,6 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => console.log('a user disconnected'));
 });
 
-server.listen(3000, () => {
-  console.log('listening on *:3000');
+server.listen(process.env.PORT || 3001, () => {
+  console.log('listening on *:3001');
 });
