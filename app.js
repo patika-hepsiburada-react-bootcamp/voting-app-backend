@@ -9,9 +9,7 @@ const client = require('./redis');
 const Vote = require('./lib/Votes');
 
 app.get('/', async (req, res) => {
-  await client.set('javascript', 1);
-  const name = await client.get('javascript');
-  res.end(`name ${name}`);
+  res.json({ message: 'App is running.' });
 });
 
 const votes = {
